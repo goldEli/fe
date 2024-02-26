@@ -163,3 +163,57 @@ export function breadthFirst(nodes) {
 }
 
 
+/**
+javascript 继承
+
+js 通过原型链的方式实现继承
+
+实例通过 __proto__ 可以访问到原型，原型通过 __proto__ 访问原型的原型,  直到返回null,形成原型链达到继承的目的
+
+实例通过构造函数生成，构造函数 prototype 访问原型
+
+原型的 constructor 可以访问到构造函数
+ */
+
+/**
+ this 的理解
+
+ 谁调用指向谁，运行时确认，正是这种机制，this的指向很难在代码编写的时候确定，导致bug 产生，es6 推出了箭头函数 箭头函数没有this，避免了this的一些问题，让代码编写时更好的确认this的指向
+  
+ */
+
+
+/**
+ 手写 bind
+
+ */
+
+Function.prototype.myBind = function (context) {
+    const fn = this
+    return (...args) => {
+        return fn.apply(context, args)
+    }
+}
+
+
+
+
+/**
+ 手写 call apply
+
+ */
+
+
+/**
+ setTimeout、Promise、Async/Await 的区别
+
+ */
+
+/**
+
+ */
+
+
+
+
+
