@@ -76,8 +76,8 @@ class MyPromise {
                 this.onFulfilled(...args)
             }
         })
-
     }
+
     reject(...args) {
         setTimeout(() => {
             if (this.onRejected) {
