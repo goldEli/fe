@@ -1,5 +1,5 @@
-import { deepClone } from "..";
 import { describe, test, expect } from "vitest"
+import { deepClone } from "../deepClone";
 
 describe('deep clone', () => {
 
