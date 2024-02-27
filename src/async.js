@@ -49,51 +49,83 @@ const promise = new Promise((resolve, reject) => {
     resolve(42);
 });
 
-promise.then(value => {
-    console.log('Success:', value); // 输出 Success: 42
-}).then(() => {
-    console.log('Chain success handler');
-}).then(() => {
-    throw new Error('Custom error');
-}).then(() => {
-    console.log('This should not run');
-}, reason => {
-    console.error('Error:', reason); // 输出 Error: Error: Custom error
-});
+// promise.then(value => {
+//     console.log('Success:', value); // 输出 Success: 42
+// }).then(() => {
+//     console.log('Chain success handler');
+// }).then(() => {
+//     throw new Error('Custom error');
+// }).then(() => {
+//     console.log('This should not run');
+// }, reason => {
+//     console.error('Error:', reason); // 输出 Error: Error: Custom error
+// });
 
 class MyPromise {
-    onFulfilled
-    onRejected
     constructor(executor) {
-        if (executor) {
-            executor(this.resolve.bind(this), this.reject.bind(this))
+        this.value = undefined
+        this.state = 'pending'
+        this.reason = undefined
+        this.onResolvedCallbacks = []
+        this.onRejectedCallbacks = []
+
+        const resolve = (value) => {
+            if (this.state === 'pending') {
+                this.state = 'fulfilled'
+                this.value = value
+                this.onResolvedCallbacks.forEach(fn => fn())
+            }
+        }
+        const reject = (reason) => {
+            if (this.state === 'pending') {
+                this.state = 'rejected'
+                this.reason = reason
+                this.onRejectedCallbacks.forEach(fn => fn())
+            }
+        }
+
+        try {
+            executor(resolve, reject)
+        } catch (error) {
+            reject(error)
         }
     }
 
-    resolve(...args) {
-        setTimeout(() => {
-            if (this.onFulfilled) {
-                this.onFulfilled(...args)
+    then(onFulfilled, onRejected) {
+        return new MyPromise((resolve, reject) => {
+
+            const handleFulfilled = () => {
+                try {
+                    const result = onFulfilled(this.value)
+                    resolve(result)
+                } catch (error) {
+                    reject(error)
+                }
             }
+
+            const handleRejected = () => {
+                try {
+                    const result = onRejected(this.reason)
+                    reject(reject)
+                } catch (error) {
+                    reject(error)
+                }
+            }
+
+            if (this.state === 'fulfilled') {
+                handleFulfilled()
+            } else if (this.state === 'rejected') {
+                handleRejected()
+            } else {
+                this.onResolvedCallbacks.push(handleFulfilled)
+                this.onRejectedCallbacks.push(handleRejected)
+            }
+
+
         })
     }
 
-    reject(...args) {
-        setTimeout(() => {
-            if (this.onRejected) {
-                this.onRejected(...args)
-            }
-        })
-    }
 
-}
-
-MyPromise.prototype.then = function (onFulfilled, onRejected) {
-    this.onFulfilled = onFulfilled
-    this.onRejected = onRejected
-    return new MyPromise((resolve, reject) => {
-        resolve()
-    })
 }
 
 
