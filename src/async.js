@@ -45,9 +45,9 @@ Async/Await 就行一个自执行的 generate 函数，yield 可以想象成 awa
  */
 
 // 使用示例
-const promise = new Promise((resolve, reject) => {
-    resolve(42);
-});
+// const promise = new Promise((resolve, reject) => {
+//     resolve(42);
+// });
 
 // promise.then(value => {
 //     console.log('Success:', value); // 输出 Success: 42
@@ -106,7 +106,7 @@ class MyPromise {
             const handleRejected = () => {
                 try {
                     const result = onRejected(this.reason)
-                    reject(reject)
+                    reject(result)
                 } catch (error) {
                     reject(error)
                 }
@@ -144,3 +144,83 @@ p1.then(value => {
 }, reason => {
     console.error('Error:', reason); // 输出 Error: Error: Custom error
 });
+
+MyPromise.all = (promiseList) => {
+    const result = []
+    return new MyPromise((resolve, reject) => {
+        promiseList.forEach(p => {
+            p.then(value => {
+                result.push(value)
+                if (result.length === promiseList.length) {
+                    resolve(result)
+                }
+            })
+        })
+    })
+}
+MyPromise.race = (promiseList) => {
+    return new MyPromise((resolve, reject) => {
+        promiseList.forEach(p => {
+            p.then(value => {
+                resolve(value)
+            })
+        })
+    })
+
+}
+
+/**
+ * test all and race
+ */
+
+// const p2 = new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//         resolve('p2');
+//     }, 1000)
+// })
+
+// const p3 = new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//         resolve('p3');
+//     }, 1100)
+// })
+// const p4 = new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//         resolve('p4');
+//     }, 1200)
+// })
+
+// Promise.all([p2, p3, p4]).then(results => {
+//     console.log("Promise.all", results)
+// })
+
+// Promise.race([p2, p3, p4]).then(results => {
+//     console.log("Promise.race", results)
+// })
+
+
+const p2 = new MyPromise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('p2');
+    }, 1000)
+})
+
+const p3 = new MyPromise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('p3');
+    }, 1100)
+})
+const p4 = new MyPromise((resolve, reject) => {
+    setTimeout(() => {
+        resolve('p4');
+    }, 1200)
+})
+
+MyPromise.all([p2, p3, p4]).then(results => {
+    console.log("Promise.all", results)
+})
+
+MyPromise.race([p2, p3, p4]).then(results => {
+    console.log("Promise.race", results)
+})
+
