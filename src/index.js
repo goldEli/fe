@@ -82,6 +82,16 @@ function throttle(interval, cb) {
 }
 
 
+/**
+有以下 3 个判断数组的方法，请分别介绍它们之间的区别和优劣
+Object.prototype.toString.call() 、 instanceof 以及 Array.isArray()
+
+instanceof 找到构造函数,只能判断引用类型，无法判断原始类型 比如 true
+
+Array.isArray() 判断是否是函数,只能判断函数
+
+Object.prototype.toString.call() 原型名称转成字符串，通用性最好
+ */
 
 
 
