@@ -129,21 +129,21 @@ class MyPromise {
 }
 
 
-const p1 = new MyPromise((resolve, reject) => {
-    resolve(42);
-});
+// const p1 = new MyPromise((resolve, reject) => {
+//     resolve(42);
+// });
 
-p1.then(value => {
-    console.log('Success:', value); // 输出 Success: 42
-}).then(() => {
-    console.log('Chain success handler');
-}).then(() => {
-    throw new Error('Custom error');
-}).then(() => {
-    console.log('This should not run');
-}, reason => {
-    console.error('Error:', reason); // 输出 Error: Error: Custom error
-});
+// p1.then(value => {
+//     console.log('Success:', value); // 输出 Success: 42
+// }).then(() => {
+//     console.log('Chain success handler');
+// }).then(() => {
+//     throw new Error('Custom error');
+// }).then(() => {
+//     console.log('This should not run');
+// }, reason => {
+//     console.error('Error:', reason); // 输出 Error: Error: Custom error
+// });
 
 MyPromise.all = (promiseList) => {
     const result = []
@@ -166,7 +166,6 @@ MyPromise.race = (promiseList) => {
             })
         })
     })
-
 }
 
 /**
@@ -199,28 +198,29 @@ MyPromise.race = (promiseList) => {
 // })
 
 
-const p2 = new MyPromise((resolve, reject) => {
-    setTimeout(() => {
-        resolve('p2');
-    }, 1000)
-})
+// const p2 = new MyPromise((resolve, reject) => {
+//     setTimeout(() => {
+//         resolve('p2');
+//     }, 1000)
+// })
 
-const p3 = new MyPromise((resolve, reject) => {
-    setTimeout(() => {
-        resolve('p3');
-    }, 1100)
-})
-const p4 = new MyPromise((resolve, reject) => {
-    setTimeout(() => {
-        resolve('p4');
-    }, 1200)
-})
+// const p3 = new MyPromise((resolve, reject) => {
+//     setTimeout(() => {
+//         resolve('p3');
+//     }, 1100)
+// })
+// const p4 = new MyPromise((resolve, reject) => {
+//     setTimeout(() => {
+//         resolve('p4');
+//     }, 1200)
+// })
 
-MyPromise.all([p2, p3, p4]).then(results => {
-    console.log("Promise.all", results)
-})
+// MyPromise.all([p2, p3, p4]).then(results => {
+//     console.log("Promise.all", results)
+// })
 
-MyPromise.race([p2, p3, p4]).then(results => {
-    console.log("Promise.race", results)
-})
+// MyPromise.race([p2, p3, p4]).then(results => {
+//     console.log("Promise.race", results)
+// })
+
 
