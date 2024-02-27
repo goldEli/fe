@@ -41,10 +41,7 @@ class Link {
 
 /**
  
-1. 写 React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？
- 
-key 就是元素的唯一身份，在 diff 的时候, 才知道哪一个移动到了哪里，哪一个被删除了
-基于key创建map，用于后续的对比,移动 删除等操作
+
  
 2. ['1', '2', '3'].map(parseInt) what & why ?
  
@@ -86,27 +83,6 @@ function throttle(interval, cb) {
 
 
 
-
-/**
-javascript 继承
-
-js 通过原型链的方式实现继承
-
-实例通过 __proto__ 可以访问到原型，原型通过 __proto__ 访问原型的原型,  直到返回null,形成原型链达到继承的目的
-
-实例通过构造函数生成，构造函数 prototype 访问原型
-
-原型的 constructor 可以访问到构造函数
- */
-
-/**
- setTimeout、Promise、Async/Await 的区别
-
- */
-
-/**
-
- */
 
 
 
