@@ -1,40 +1,47 @@
 import { describe, test, expect } from "vitest"
-import "../index"
+import "../this"
 
+function Foo() {
+    this.name = 'foo'
+}
+Foo.prototype.say = function (str) {
+    if (!str) return this.name
+    return this.name + "_" + str
+}
+
+const foo = new Foo()
+const bar = { name: "bar" }
 describe('this', () => {
     test('bind', () => {
-
-        function Foo() {
-            this.name = 'foo'
-        }
-        Foo.prototype.say = function () {
-            return this.name
-        }
-
-        const foo = new Foo()
-
-        expect(foo.__proto__).toBe(Foo.prototype)
-
-        expect(Foo.prototype.__proto__ === Object.prototype).toBe(true)
-        expect(Foo.__proto__ === Function.prototype).toBe(true)
-
-        expect(Object.prototype.__proto__ === null).toBe(true)
-        expect(Object.prototype.constructor === Object).toBe(true)
-        expect(Function.prototype.__proto__ === Object.prototype).toBe(true)
-
-        expect(foo.__proto__ === Foo.prototype).toBe(true)
-        expect(Foo.prototype.say.__proto__ === Function.prototype).toBe(true)
-        // expect(foo.say.myBind === Foo.prototype.myBind).toBe(true)
-        expect(Foo.prototype.__proto__.myBind === Object.prototype.myBind).toBe(true)
-        expect(foo.say.bind.__proto__ === Function.prototype).toBe(true)
-        expect(Function.prototype.myBind === foo.say.myBind).toBe(true)
 
 
         expect(foo.say()).toBe('foo')
 
-        const bar = { name: "bar" }
 
-        expect(foo.say.bind(bar)()).toBe('bar')
+        expect(foo.say.bind(bar)('xxx')).toBe('bar_xxx')
+        expect(foo.say.bind(bar, 'xxx')()).toBe('bar_xxx')
         expect(foo.say.myBind(bar)()).toBe('bar')
+        expect(foo.say.myBind(bar)('xxx')).toBe('bar_xxx')
+        expect(foo.say.myBind(bar, 'xxx')()).toBe('bar_xxx')
     })
+
+    test('call', () => {
+
+        expect(foo.say()).toBe('foo')
+        expect(foo.say.call(bar)).toBe('bar')
+        expect(foo.say.call(bar, 'xxxx')).toBe('bar_xxxx')
+
+        expect(foo.say.myCall(bar)).toBe('bar')
+        expect(foo.say.myCall(bar, 'xxxx')).toBe('bar_xxxx')
+    });
+
+    test('apply', () => {
+
+        expect(foo.say()).toBe('foo')
+        expect(foo.say.apply(bar)).toBe('bar')
+        expect(foo.say.apply(bar, ['xxxx'])).toBe('bar_xxxx')
+
+        expect(foo.say.myApply(bar)).toBe('bar')
+        expect(foo.say.myApply(bar, ['xxxx'])).toBe('bar_xxxx')
+    });
 });
