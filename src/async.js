@@ -1,4 +1,12 @@
 /**
+JS 异步解决方案的发展历程以及优缺点。
+
+最早通过 callback 实现回调 但是有死亡回调问题
+promise 方案链式调用的方式 写法相对更简洁 但是相比起其他的语言的同步写法可读性还不够
+async、await 同步写法 但是函数需要加 async 具有传染性
+ */
+
+/**
  * setTimeout、Promise、Async/Await
 1. setTimeout 宏任务, 回调放入到宏任务队列中，等执行栈清空后,微任务队列为空，执行
 2. Promise、Async/Await 微任务,回调放入到微任务队列中,当执行栈清空后，微任务队列依次进入执行栈执行
@@ -43,23 +51,6 @@ Async/Await 就行一个自执行的 generate 函数，yield 可以想象成 awa
  * Promise.all
  * Promise.race
  */
-
-// 使用示例
-// const promise = new Promise((resolve, reject) => {
-//     resolve(42);
-// });
-
-// promise.then(value => {
-//     console.log('Success:', value); // 输出 Success: 42
-// }).then(() => {
-//     console.log('Chain success handler');
-// }).then(() => {
-//     throw new Error('Custom error');
-// }).then(() => {
-//     console.log('This should not run');
-// }, reason => {
-//     console.error('Error:', reason); // 输出 Error: Error: Custom error
-// });
 
 class MyPromise {
     constructor(executor) {
@@ -171,32 +162,6 @@ MyPromise.race = (promiseList) => {
 /**
  * test all and race
  */
-
-// const p2 = new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//         resolve('p2');
-//     }, 1000)
-// })
-
-// const p3 = new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//         resolve('p3');
-//     }, 1100)
-// })
-// const p4 = new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//         resolve('p4');
-//     }, 1200)
-// })
-
-// Promise.all([p2, p3, p4]).then(results => {
-//     console.log("Promise.all", results)
-// })
-
-// Promise.race([p2, p3, p4]).then(results => {
-//     console.log("Promise.race", results)
-// })
-
 
 // const p2 = new MyPromise((resolve, reject) => {
 //     setTimeout(() => {
