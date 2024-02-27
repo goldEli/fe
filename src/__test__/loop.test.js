@@ -1,5 +1,5 @@
-import { deepFirst, breadthFirst } from "..";
 import { describe, test, expect } from "vitest"
+import { breadthFirst, deepFirst } from "../algorithm";
 
 const tree = {
     id: 0,
