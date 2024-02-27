@@ -44,15 +44,18 @@ var arr = [ [1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14] ] ] ], 
  */
 
 export function flat(arr) {
-    const stack = arr
-    const result = []
-    while (stack.length > 0) {
-        const pop = stack.pop()
-        if (Array.isArray(pop)) {
-            stack.push(...pop)
-        } else {
-            result.push(pop)
-        }
-    }
-    return [...new Set(result)].sort((a, b) => a - b)
+    // 第一种
+    // const stack = arr
+    // const result = []
+    // while (stack.length > 0) {
+    //     const pop = stack.pop()
+    //     if (Array.isArray(pop)) {
+    //         stack.push(...pop)
+    //     } else {
+    //         result.push(pop)
+    //     }
+    // }
+    // return [...new Set(result)].sort((a, b) => a - b)
+    // 第二种
+    return Array.from(new Set(arr.flat(Infinity))).sort((a, b) => a - b)
 }
