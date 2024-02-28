@@ -46,3 +46,12 @@ class Example extends React.Component {
 };
 // 0 0 2 3
  */
+
+/**
+聊聊 Redux 和 Vuex 的设计思想
+
+1. 全局管理数据，单一数据源
+2. Redux 数据不可变  Vuex 数据可观察
+3. dispatch 触发 action ，Redux 基于reducer得到新的state，Vuex actions 触发订阅组件更新
+
+ */

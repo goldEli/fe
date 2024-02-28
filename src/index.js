@@ -98,3 +98,4 @@ Object.prototype.toString.call() 原型名称转成字符串，通用性最好
 
 
 
+
