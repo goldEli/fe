@@ -20,3 +20,10 @@
 
  */
 
+/**
+cookie 和 token 都存放在 header 中，为什么不会劫持 token？
+
+1. cookie 会自动带到每次请求中，钓鱼邮件伪造请求会劫持到cookie
+2. token 是通过js手动设置到header中的，所以很难自动被获取
+ */
+

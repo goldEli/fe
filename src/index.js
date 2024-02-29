@@ -93,9 +93,57 @@ Array.isArray() 判断是否是函数,只能判断函数
 Object.prototype.toString.call() 原型名称转成字符串，通用性最好
  */
 
+/**
+可从IIFE、AMD、CMD、CommonJS、UMD、webpack(require.ensure)、ES Module、<script type="module"> 这几个角度考虑。
+
+1. 最早期js只是用于简单的脚本开发，没有模块化，只有采用 IIFE 立即执行函数来隔绝变量污染。
+2. 后面有个 nodejs，实现了 CommonJS 模块化
+3. 由于 CommonJS 是同步加载，不能用于浏览器，后面又推出了 AMD CMD
+4. UMD 适配多种模块化
+5. 由于 模块化规范太多了，所以js推出了 ES Module 来统一模块化规范
+6. <script type="module"> 让浏览器支持 ES Module
+ */
 
 
+/**
+关于 const 和 let 声明的变量不在 window 上
 
+早期使用var 由于都挂在到全局 很容易被污染
+所以新推出了 const let 不会挂载到 window，而是会创建私有的作用域
+ */
+
+
+/**
+以下代码打印什么
+var b = 10;
+(function b(){
+    b = 20;
+    console.log(b); 
+})();
+
+答案：
+ƒ b(){
+    b = 20;
+    console.log(b); 
+}
+1. 立即执行函数作用域中 声明了 b = function 
+2. function b 是常量 不能被修改，严格模式下会报错，非严格模式下 默认失败
+
+简单改造下代码，使之分别打印 10 和 20。
+var b = 10;
+(function b(){
+    b = 20;
+    console.log(window.b); 
+})();
+
+var b = 10;
+(function b(){
+    var b = 20;
+    console.log(b); 
+})();
+
+
+ */
 
 
 

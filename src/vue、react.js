@@ -55,3 +55,17 @@ class Example extends React.Component {
 3. dispatch 触发 action ，Redux 基于reducer得到新的state，Vuex actions 触发订阅组件更新
 
  */
+
+/**
+ 聊聊 Vue 的双向数据绑定，Model 如何改变 View，View 又是如何改变 Model 的
+
+ v-model 就是一个语法糖，@input  :value 合并 比如用户输入触发@input，改变value ,value 触发更新
+ */
+
+/**
+Virtual DOM 真的比操作原生 DOM 快吗？谈谈你的想法。
+
+Virtual DOM 本质也是需要去操作原生dom的，所以说理论上加上了diff逻辑，很多时候比直接操作dom要慢。
+Virtual DOM 目的的目的并不是为了提升性能，而是为了代码的可维护性, 开发只用关注数据和ui的关系，即减少了代码量，提高了维护性
+
+*/
