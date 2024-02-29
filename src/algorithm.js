@@ -59,3 +59,57 @@ export function flat(arr) {
     // 第二种
     return Array.from(new Set(arr.flat(Infinity))).sort((a, b) => a - b)
 }
+
+/**
+ * 动态规划
+ * 
+ * 斐波那契数列
+ */
+
+export function fibonacci(n) {
+    if (n <= 1) {
+        return n;
+    } else {
+        // 创建一个数组 dp 来保存子问题的解
+        const dp = [0, 1];
+        for (let i = 2; i <= n; i++) {
+            dp.push(dp[i - 1] + dp[i - 2]);
+        }
+        return dp[n];
+    }
+}
+
+
+export function fibonacci1(n) {
+    if (n <= 1) {
+        return n;
+    }
+    let dp1 = 0
+    let dp2 = 1
+    for (let i = 2; i <= n; i++) {
+        const temp = dp2
+        dp2 = dp1 + dp2
+        dp1 = temp
+    }
+    return dp2
+
+}
+
+
+export function fibonacci2(n) {
+    if (n === 0) {
+        return 0
+    }
+    if (n === 1) {
+        return 1
+    }
+    if (n === 2) {
+        return 1
+    }
+    return fibonacci2(n - 1) + fibonacci2(n - 2)
+
+}
+
+// f(3) = f(2) + f(1) 1+1=2
+// f(4) = f(3) + f(2) 2+1=3
+// f(5) = f(4) + f(3) 3+2=5

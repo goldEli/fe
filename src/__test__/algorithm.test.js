@@ -1,5 +1,5 @@
 import { describe, test, expect } from "vitest"
-import { breadthFirst, deepFirst, flat } from "../algorithm";
+import { breadthFirst, deepFirst, fibonacci,  fibonacci1,  fibonacci2,  flat } from "../algorithm";
 
 const tree = {
     id: 0,
@@ -34,6 +34,12 @@ describe('algorithm', () => {
         var arr = [[1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10];
 
         expect(flat(arr)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]);
+    })
+
+    test("斐波那契数列", () => {
+        expect(fibonacci(10)).toEqual(55)
+        expect(fibonacci1(10)).toEqual(55)
+        expect(fibonacci2(10)).toEqual(55)
     })
 
 });
