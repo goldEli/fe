@@ -1,5 +1,5 @@
 import { describe, test, expect } from "vitest"
-import { breadthFirst, deepFirst, fibonacci,  fibonacci1,  fibonacci2,  flat } from "../algorithm";
+import { breadthFirst, deepFirst, fibonacci, fibonacci1, fibonacci2, flat, flatten } from "../algorithm";
 
 const tree = {
     id: 0,
@@ -40,6 +40,22 @@ describe('algorithm', () => {
         expect(fibonacci(10)).toEqual(55)
         expect(fibonacci1(10)).toEqual(55)
         expect(fibonacci2(10)).toEqual(55)
+    })
+
+    test("flatten", () => {
+        const arr = [1, 2, 3, [[4, 5], 6, [7, 8, 9]], 10]
+        expect(flatten(arr)).toStrictEqual([
+            1,
+            2,
+            3,
+            10,
+            6,
+            4,
+            5,
+            7,
+            8,
+            9,
+        ])
     })
 
 });

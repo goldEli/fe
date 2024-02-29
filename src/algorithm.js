@@ -113,3 +113,22 @@ export function fibonacci2(n) {
 // f(3) = f(2) + f(1) 1+1=2
 // f(4) = f(3) + f(2) 2+1=3
 // f(5) = f(4) + f(3) 3+2=5
+
+/**
+迭代的方式实现 flatten 
+ */
+export function flatten(arr) {
+    const result = []
+    const stack = arr
+
+    while (stack.length) {
+        const top = stack.shift()
+        if (Array.isArray(top)) {
+            stack.push(...top)
+        } else {
+            result.push(top)
+        }
+
+    }
+    return result
+}
