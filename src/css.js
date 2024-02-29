@@ -19,3 +19,17 @@ reflow repaint 都会导致性能问题，特别是 reflow，比如大小改变�
 4. 避免表格布局
 
  */
+
+/**
+介绍下 BFC 及其应用
+
+Block Formatting Context，创建一个封闭的空间，外面不会影响里面 里面不会影响外面。
+可以解决一些跟预期不符合的问题，比如 
+1. 解决 margin 重叠问题
+2. float 导致父级高度为0
+
+触发bfc 常用方法
+1. overflow hidden
+2. position fixed absolute relative
+3. display flex
+ */
