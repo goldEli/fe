@@ -114,6 +114,7 @@ Object.prototype.toString.call() 原型名称转成字符串，通用性最好
 
 
 /**
+
 以下代码打印什么
 var b = 10;
 (function b(){
@@ -142,9 +143,35 @@ var b = 10;
     console.log(b); 
 })();
 
+*/
 
+/**
+
+var a = 10;
+(function () {
+    console.log(a)
+    a = 5
+    console.log(window.a)
+    var a = 20;
+    console.log(a)
+})()
+
+打印如下：
+
+undefined、10 、20
+
+立即执行函数作用域中，var a, 变量提升 此时为 undefined, 
+
+
+var a = 10;
+(function () {
+    console.log(a)         // undefined
+    a = 5                  // 立即执行函数中的a赋值为5
+    console.log(window.a)  // 全局a 为10
+    var a = 20;            // 立即执行函数中的a赋值为10 
+    console.log(a)         //  立即执行函数作用域中的a为20
+})()
  */
-
 
 
 
