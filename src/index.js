@@ -179,3 +179,26 @@ var a = 10;
 使用 sort() 对数组 [3, 15, 8, 29, 102, 22] 进行排序，输出结果
 sort 转成 utf-16 进制排序
  */
+
+/**
+输出以下代码执行的结果并解释为什么
+
+var obj = {
+    '2': 3,
+    '3': 4,
+    'length': 2,
+    'splice': Array.prototype.splice,
+    'push': Array.prototype.push
+}
+obj.push(1)
+obj.push(2)
+console.log(obj)
+
+
+{2:1, 3:2, length:4, splice:f, push:f}
+
+push 方法将数据放到数组的最后，之前length为2
+obj.push(1) // obj.length += obj.length obj[obj.length-1] = 1
+obj.push(2) // obj.length += obj.length obj[obj.length-1] = 2
+
+ */
