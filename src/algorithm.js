@@ -141,3 +141,17 @@ export function flatten(arr) {
 export function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
+
+/**
+实现 (5).add(3).minus(2) 功能
+例： 5 + 3 - 2，结果为 6
+
+
+Number.prototype.add = function (num) {
+    return this.valueOf() + num
+}
+
+Number.prototype.minus = function (num) {
+    return this.valueOf() - num
+}
+ */
