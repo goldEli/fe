@@ -87,3 +87,14 @@ redux的理念实现做一个时间旅行，记录状态的历史，当时看过
 
 当在严格模式中使用 Vuex 时，在属于 Vuex 的 state 上使用 v-model 会比较棘手，既然不能直接修改，那么创建一个ref 中间值来处理
   */
+
+
+/**
+Vue 的响应式原理中 Object.defineProperty 有什么缺陷？
+
+为什么在 Vue3.0 采用了 Proxy，抛弃了 Object.defineProperty？
+
+1. 不能监听数组下标的变化
+2. 不能监听对象属性，对象属性还需要递归
+Proxy 解决了以上缺陷
+ */
