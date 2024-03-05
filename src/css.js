@@ -33,3 +33,11 @@ Block Formatting Context，创建一个封闭的空间，外面不会影响里�
 2. position fixed absolute relative
 3. display flex
  */
+
+
+/**
+怎么让一个 div 水平垂直居中
+
+1. display flex
+2. position absolute  top left 50% transform: translate(-50%, -50%);
+ */
